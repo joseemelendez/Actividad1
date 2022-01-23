@@ -77,9 +77,9 @@ lista.insertarFinal(5, "Carmen")
 lista.insertarFinal(6, "Juan")
 
 lista.insertarInicio(7, "Pablo")
-
+lista.insertarFinal(8, "Carolina")
 
 lista.visualizar()
 
 
-lista.buscar(5)
+lista.buscar(8)
