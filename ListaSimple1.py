@@ -1,4 +1,7 @@
 
+from xml.etree.ElementTree import tostring
+
+
 class Alumno:
     def __init__(self, carnet, nombre) -> None:
         self.carnet = carnet
@@ -39,126 +42,83 @@ class Lista:
         def buscar(self, carnet):
             
             if self.tamanio == 0:
-                print("No se puede buscar, lista vacia.")
+                print("No se puede buscar, lista vacia.\n")
             else:
                 nodo = self.cabeza
                 seguir = True
                 while seguir:
                     if nodo.carnet == carnet:
-                        print("Se ha encontrado el carnet: ", nodo.carnet, "pertenece a: " , nodo.nombre, "\n")
+                        print("Se ha encontrado el carnet:", nodo.carnet, ", pertenece a:" , nodo.nombre, "\n")
                         seguir = False
                     else:
 
                         if nodo.siguiente is None:
                             seguir = False
-                            print("No se ha encontrado el estudiante.", "\n")
+                            print("No se ha encontrado el estudiante con carnet",carnet,".\n")
                         else :
                             nodo = nodo.siguiente
 
         def eliminar (self, carnet):
-            
             nodo = self.cabeza
 
             if nodo is None: #la lista está vacia
-                print("No se puede eliminar, lista vacía.")
+                print("[!!] No se puede eliminar, lista vacía.\n")
             elif nodo.siguiente is None: #tiene solo un elemento
                 if nodo.carnet == carnet:
-                    print("Se ha encontrado el carnet: ", nodo.carnet)
+                    print("[OK] Se eliminará el alumno Carnet:", nodo.carnet," Nombre:", nodo.nombre,"\n")
                     self.tamanio -= 1
                     self.cabeza = None
                 else:
-                    print("No se ha encontrado el elemento.")
+                    print("[!] No se ha encontrado el alumno con carnet", carnet, ".\n")
             else: #tiene mas de un elemento
                 if nodo.carnet == carnet:#es el primer elemento
-                    print("Se ha encontrado el carnet: ", nodo.carnet)
+                    print("[OK] Se eliminará el alumno Carnet:", nodo.carnet," Nombre:", nodo.nombre,"\n")
                     self.tamanio -= 1
                     self.cabeza = nodo.siguiente
                 else:#no es el primero
-                    print("El elemento a borrar no es el primero")
                     anterior = nodo
                     nodo = anterior.siguiente
                     while nodo is not None:
                         if nodo.carnet == carnet:
+                            print("[OK] Se eliminará el alumno Carnet:", nodo.carnet," Nombre:", nodo.nombre,"\n")
                             anterior.siguiente = nodo.siguiente
                             self.tamanio -=1
                             break
                         else:
                             anterior = nodo
                             nodo = anterior.siguiente
-                    
+
                     if nodo is None:
-                        print("No se encontró el carnet a eliminar.")
-                            
-
-
-                   
-                        
-
-
-
-
-
-                #if nodo is None: #tiene solo un elemento
-                
-                #else:
-
-
-
-
-            # if self.cabeza is None: #si está vacia
-            #     print("No se puede eliminar, lista vacia.")
-            # else:
-            #     nodo = self.cabeza
-            #     seguir = True
-            #     if nodo.carnet == carnet: #si tiene solo un elemento
-            #         self.cabeza = None
-            #         self.tamanio -= 1
-            #         print("Se eliminado el alumno: ", nodo.carnet)
-            #     else: #si tiene mas elementos
-            #         while seguir:
-                        
-            #             if nodo.carnet == carnet:
-            #                 anterior = nodo
-            #                 anterior.siguiente = nodo.siguiente
-            #                 self.tamanio -=1
-            #                 seguir = False
-            #                 print("Se eliminado el alumno: ", carnet)
-                            
-            #             else:
-            #                 nodo = nodo.siguiente
-
+                        print("[!] No se encontró el carnet a eliminar.\n")
             pass
             
         def visualizar(self):
             actual = self.cabeza
-            print("El tamaño de la lista es: ", self.tamanio)
+            print("Elementos en lista:")
+            if actual is None:
+                print("\tLista vacia.")
+
             while actual is not None:
                 if actual.siguiente is None:
                     print("Carnet: ", actual.carnet , " Nombre: " , actual.nombre , "\tSiguiente: ", actual.siguiente)
                 else:
                     print("Carnet: ", actual.carnet , " Nombre: " , actual.nombre , "\tSiguiente: ", actual.siguiente.carnet)
                 actual = actual.siguiente
-            print()
+            print("\tTamaño: ", self.tamanio,"\n")
+            
         
 lista = Lista()
+#PRUEBAS
 
-#lista.insertarInicio(1, "Jose")
-#lista.insertarInicio(2, "Carlos")
-#lista.insertarInicio(3, "Lucia")
-lista.insertarInicio(4, "Juana")
-
-lista.insertarFinal(5, "Carmen")
-lista.insertarFinal(6, "Juan")
-
-lista.insertarInicio(7, "Pablo")
-lista.insertarFinal(8, "Carolina")
+lista.insertarFinal(1,"Jose")
+lista.insertarFinal(2,"Carlos")
+#lista.insertarFinal(3,"Maria")
+# lista.insertarFinal(4,"Susana")
+# lista.insertarFinal(5,"Pablo")
+# lista.insertarFinal(6,"Lucia")
+lista.insertarInicio(0, "Terminator")
+lista.insertarInicio(100, "Twain")
 
 lista.visualizar()
-lista.eliminar(10)
+lista.eliminar(100)
 lista.visualizar()
-
-
-#lista.buscar(8)
-
-#lista.visualizar()
-#lista.visualizar()
