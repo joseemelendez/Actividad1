@@ -38,8 +38,47 @@ class ListaSimple2:
         self.tamanio += 1
         pass
 
+    def buscar(self, carnet):
+        nodo = self.cabeza
+        encontrado = False
+        while (nodo is not None) and encontrado == False:
+            if nodo.carnet == carnet:
+                print("Se ha encontrado el alumno con carnet: " + str(nodo.carnet) +", pertenece a:", nodo.nombre + ".\n")
+                encontrado = True
+            else:
+                nodo = nodo.siguiente
+        if encontrado == False:
+            print("No se encontró el carnet:", carnet,"\n")
+        pass
+
     def eliminar(self, carnet):
-            
+        anterior = None
+        nodo = self.cabeza
+
+        if nodo is None:#lista vacia
+            print("Lista vacía, no se puede eliminar.\n")
+        else: #tiene elementos
+            if nodo.carnet == carnet: #elemento encontrado
+                if self.cabeza == nodo:#es el primer elemento
+                    self.cabeza = nodo.siguiente
+                    self.tamanio -= 1
+            else:# es otro elemento                    
+                anterior = nodo
+                nodo = nodo.siguiente
+                while nodo is not None:
+                    if nodo.carnet == carnet: #elemento encontrado
+                        print("Se eliminará el estudiante con carnet " + str(nodo.carnet) + ". Nombre:", nodo.nombre,"\n")
+                        anterior.siguiente = nodo.siguiente
+                        self.tamanio -= 1
+
+                        if nodo == self.cola: #es el ultimo elemento
+                            self.cola = anterior
+                        
+                        nodo = None #funciona como el break
+                    else:
+                        anterior = nodo
+                        nodo = nodo.siguiente
+
         pass
 
 
@@ -47,7 +86,7 @@ class ListaSimple2:
         nodo = self.cabeza
 
         if nodo is None:#lista vacia
-            print("Lista vacía")
+            print("No se puede visualizar, lista vacía.\n")
         else: #lista tiene elementos
             while nodo is not None:
                 if nodo.siguiente is None:#validando para que se pueda imprimir el valor del carnet del siguiente.
@@ -60,11 +99,17 @@ class ListaSimple2:
         pass
 
 
-
+print(__name__)
 lista = ListaSimple2()
 lista.visualizar()
 lista.insertarFinal(1, "Juan")
 lista.insertarFinal(2, "Pamela")
 lista.insertarFinal(3, "Tamara")
+lista.insertarInicio(100, "Pancho")
 lista.visualizar()
 
+lista.eliminar(1)
+
+lista.visualizar()
+
+lista.buscar(2)
