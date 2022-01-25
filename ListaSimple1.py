@@ -1,7 +1,3 @@
-
-from xml.etree.ElementTree import tostring
-
-
 class Alumno:
     def __init__(self, carnet, nombre) -> None:
         self.carnet = carnet
@@ -9,7 +5,7 @@ class Alumno:
         self.siguiente = None
         pass
 
-class Lista:
+class ListaSimple1:
         def __init__(self) -> None:
             self.cabeza = None
             self.tamanio = 0
@@ -106,8 +102,9 @@ class Lista:
                 actual = actual.siguiente
             print("\tTamaño: ", self.tamanio,"\n")
             
+print(__name__)
         
-lista = Lista()
+lista = ListaSimple1()
 #PRUEBAS
 
 lista.insertarFinal(1,"Jose")
