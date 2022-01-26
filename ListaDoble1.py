@@ -102,7 +102,13 @@ class ListaDoble1:
                     else:#iterar
                         anterior = nodo
                         nodo = nodo.siguiente
-                        siguiente = nodo.siguiente
+                        if nodo is None:
+                            break
+                        else:
+                            siguiente = nodo.siguiente
+                
+                if encontrado == False:
+                    print("[!] No se ha encontrado el carnet", carnet, "para eliminar.\n")
 
         pass
 
@@ -133,24 +139,20 @@ class ListaDoble1:
 lista = ListaDoble1()
 
 lista.visualizar()
+
 lista.insertarInicio(0, "Carmen")
 lista.insertarInicio(1, "Lucia")
 lista.insertarFinal(10, "Carlos")
+lista.insertarInicio(2, "Pablo")
+lista.insertarInicio(3, "Juan")
+lista.insertarFinal(13, "Carlos")
+lista.insertarFinal(11, "Maria")
 
 lista.visualizar()
 
-lista.eliminar(1)
+lista.eliminar(101)
 
 lista.visualizar()
-
-
-#lista.visualizar()
-# lista.insertarInicio(2, "Pablo")
-# lista.insertarInicio(3, "Juan")
-
-# lista.insertarFinal(10, "Carlos")
-# lista.insertarFinal(11, "Maria")
-# lista.visualizar()
 
 # lista.buscar(100)
 
